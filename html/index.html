@@ -29,16 +29,13 @@
 
 	var d=new Date();
 	var hours=String(d.getHours()) + "시";
-	var minutes=String(d.getMinutes()) +"분";
+	var minutes=String(d.getMinutes()) +"분 입니다";
 	function time(){
                 if(responsiveVoice.voiceSupport()){
                         console.log('Responsive Voice Supported');
                         responsiveVoice.speak(hours+minutes, "Korean Female");
                 }
         }
-String(d);
-
-	function test(){alert("button clicked");}
 </script>
 
 
