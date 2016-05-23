@@ -1,0 +1,21 @@
+<html>
+   <head>
+<meta charset="UTF-8">
+ <!-- responsivevoice.js -->
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+<script type="text/javascript">
+	function say() {
+		if(responsiveVoice.voiceSupport()) {
+			console.log('Responsvie Voice Supported');
+			responsiveVoice.speak("주인님 지니를  부르셨습니까!","Korean Female");
+		}
+	}
+	function test(){alert("button clicked");}
+</script>
+
+</head>
+<body>
+<button onclick="say();">Speak</button>
+<button onclick="test();">test </button>
+</body>
+</html>

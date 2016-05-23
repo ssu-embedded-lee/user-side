@@ -1,0 +1,28 @@
+<html>
+   <head>
+<meta charset="UTF-8">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+<script>
+if (annyang) {
+ // Let's define a command.
+ var commands = {
+   '지니': function() { alert('Hello world!'); }
+ };
+
+ // Add our commands to annyang
+   annyang.setLanguage("ko");
+ annyang.addCommands(commands);
+   
+ // Start listening.
+ annyang.init(commands);
+ annyang.start();
+   
+}
+</script>
+       
+
+</head>
+<body>
+<button onclick="say();">Speak</button>
+</body>
+</html>
