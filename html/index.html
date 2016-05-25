@@ -11,21 +11,18 @@
 			responsiveVoice.speak("주인님 지니를 부르셨습니까!", "Korean Female");
 		}
 	}
-
  	function lighton(){
                 if(responsiveVoice.voiceSupport()){
                         console.log('Responsive Voice Supported');
                         responsiveVoice.speak("불을 키겠습니다!", "Korean Female");
                 }
         }
-
         function feed(){
                 if(responsiveVoice.voiceSupport()){
                         console.log('Responsive Voice Supported');
                         responsiveVoice.speak("니가 알아서 쳐머겅!", "Korean Female");
                 }
         }
-
 	var d=new Date();
 	var hours=String(d.getHours()) + "시";
 	var minutes=String(d.getMinutes()) +"분 입니다";
@@ -41,7 +38,6 @@
 <script>
 if (annyang) {
  // Let's define a command.
-
  var commands = {
    '지니': function() { say(); },
   '배고파': function() {feed(); },
@@ -49,7 +45,6 @@ if (annyang) {
   '몇시야': function() {time(); }
  //Define end
  };
-
  // Add our commands to annyang
    annyang.setLanguage("ko");
  annyang.addCommands(commands);
