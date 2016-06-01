@@ -60,7 +60,9 @@ if (annyang) {
 <center>
 <img src=./ginie.jpg>
 <?php
-echo "helloworld!";
+echo "helloworld!<br>";
+system("./inputProcess1", $result);
+echo $result;
 ?>
 </center>
 </body>
