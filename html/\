@@ -1,9 +1,14 @@
+<?php
+        ob_start();
+        $read_temperature = file_get_contents('http://192.168.0.113/temperature.php');
+?>
+
+
 <html>
    <head>
 <meta charset="UTF-8">
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
   <script src="//code.responsivevoice.org/responsivevoice.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <script type="text/javascript">
 	function say(){
@@ -19,25 +24,13 @@
                 }
         }
 
-	function get_temperature(){
-       // $.get("http://192.168.0.25/temperature.php", function(data2){responsiveVoice.speak(data2+"도 입니다", "Korean Female");  alert(data2);  })
-	$.ajax({
-		type:"GET",
-		async:"false",
-		url:"http://192.168.0.25/temperature.php",
-		dataType:"jsonp",
-		data:"list",
-		callback:"temper",
-		success:function(data){
-			responsiveVoice.speak(data+"도 입니다", "Korean Female");
-		},
-		error:function(){
-			alert("Fail");
-		}	
-        });
+	var rtemperature = "<?echo($read_temperature);?>";
+	function temperature(){
+		if(responsiveVoice.voiceSupport()){
+			console.log('Responsive Voice supported');
+			responsiveVoice.speak(rtemperature, "Korean Female");
+		}
 	}
-
-
         function feed(){
                 if(responsiveVoice.voiceSupport()){
                         console.log('Responsive Voice Supported');
@@ -63,7 +56,7 @@ if (annyang) {
    '지니': function() { say(); },
   '배고파': function() {feed(); },
   '불 켜': function() {lighton(); },
-  '몇도야': function() {get_temperature();},
+  '몇도야': function() {temperature(); },
   '몇시야': function() {time(); }
  //Define end
  };

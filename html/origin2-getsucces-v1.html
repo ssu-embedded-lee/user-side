@@ -20,22 +20,9 @@
         }
 
 	function get_temperature(){
-       // $.get("http://192.168.0.25/temperature.php", function(data2){responsiveVoice.speak(data2+"도 입니다", "Korean Female");  alert(data2);  })
-	$.ajax({
-		type:"GET",
-		async:"false",
-		url:"http://192.168.0.25/temperature.php",
-		dataType:"jsonp",
-		data:"list",
-		callback:"temper",
-		success:function(data){
-			responsiveVoice.speak(data+"도 입니다", "Korean Female");
-		},
-		error:function(){
-			alert("Fail");
-		}	
-        });
-	}
+        $.get("http://192.168.0.25/temperature.php", function(data2){responsiveVoice.speak(data2+"도 입니다", "Korean Female");  alert(data2);  })
+
+        }
 
 
         function feed(){
@@ -64,6 +51,7 @@ if (annyang) {
   '배고파': function() {feed(); },
   '불 켜': function() {lighton(); },
   '몇도야': function() {get_temperature();},
+  '온도': function() {get_temperature();},
   '몇시야': function() {time(); }
  //Define end
  };
