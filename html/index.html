@@ -19,8 +19,23 @@
                 }
         }
 
+	function save(){
+                if(responsiveVoice.voiceSupport()){
+                        console.log('Responsive Voice Supported');
+                        responsiveVoice.speak("현재 상태를 저장하였습니다.!", "Korean Female");
+                }
+        }
+
+	function load(){
+                if(responsiveVoice.voiceSupport()){
+                        console.log('Responsive Voice Supported');
+                        responsiveVoice.speak("저장된 상태를 불러왔습니다!", "Korean Female");
+                }
+        }
+
+
+
 	function get_temperature(){
-       // $.get("http://192.168.0.25/temperature.php", function(data2){responsiveVoice.speak(data2+"도 입니다", "Korean Female");  alert(data2);  })
 	$.ajax({
 		type:"GET",
 		async:"false",
@@ -64,6 +79,9 @@ if (annyang) {
   '배고파': function() {feed(); },
   '불 켜': function() {lighton(); },
   '몇도야': function() {get_temperature();},
+  '온도': function() {get_temperature();},
+  '저장해': function() {save();},
+  '불러와': function() {load();},
   '몇시야': function() {time(); }
  //Define end
  };
