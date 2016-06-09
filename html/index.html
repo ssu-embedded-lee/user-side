@@ -29,9 +29,48 @@
 		if(responsiveVoice.voiceSupport())
 		{
 			console.log('Responsive Voice Supported');
-			responsiveVoice.speak("불을 키겠습니다!", "Korean Female");
+			
+			$.ajax({
+					type:"GET",
+					async:"false",
+					url:"http://192.168.0.25/lighton.php",
+					dataType:"jsonp",
+					data:"list",
+					callback:"temper",
+					success:function(data){
+						responsiveVoice.speak("불을 켰습니다!", "Korean Female");
+					},
+					error:function(){
+					 alert("Fail");
+					 }
+				});
 		}
 	}
+	
+	function lightoff()
+        {
+                if(responsiveVoice.voiceSupport())
+                {
+                        console.log('Responsive Voice Supported');
+
+                        $.ajax({
+                                        type:"GET",
+                                        async:"false",
+                                        url:"http://192.168.0.25/lightoff.php",
+                                        dataType:"jsonp",
+                                        data:"list",
+                                        callback:"temper",
+                                        success:function(data){
+                                                responsiveVoice.speak("불을 껐습니다!", "Korean Female");
+                                        },
+                                        error:function(){
+                                         alert("Fail");
+                                         }
+                                });
+                }
+        }
+
+
 
 	function save()
 	{
@@ -117,8 +156,8 @@ if (annyang) {
  var commands = {
    '지니': function() { say(); },
   '배고파': function() {feed(); },
-  '불켜': function() {lighton(); },
-  '불꺼': function() {lightoff(); },
+  '불 켜': function() {lighton(); },
+  '불 꺼': function() {lightoff(); },
   '몇도야': function() {get_temperature();},
   '온도': function() {get_temperature();},
   '저장해': function() {save();},
