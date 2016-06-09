@@ -1,83 +1,124 @@
 <html>
-   <head>
+<head>
+
 <meta charset="UTF-8">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
-  <script src="//code.responsivevoice.org/responsivevoice.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+<script src="//code.responsivevoice.org/responsivevoice.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <script type="text/javascript">
-	function say(){
-		if(responsiveVoice.voiceSupport()){
+
+	function intro()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			  console.log('Responsive Voice Supported');
+			  responsiveVoice.speak("주인님 무엇을 도와드릴까요!", "Korean Female");
+	    }
+	}
+	function say()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
 			console.log('Responsive Voice Supported');
 			responsiveVoice.speak("주인님 지니를 부르셨습니까!", "Korean Female");
 		}
 	}
- 	function lighton(){
-                if(responsiveVoice.voiceSupport()){
-                        console.log('Responsive Voice Supported');
-                        responsiveVoice.speak("불을 키겠습니다!", "Korean Female");
-                }
-        }
+ 	function lighton()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			console.log('Responsive Voice Supported');
+			responsiveVoice.speak("불을 키겠습니다!", "Korean Female");
+		}
+	}
 
-	function save(){
-                if(responsiveVoice.voiceSupport()){
-                        console.log('Responsive Voice Supported');
-                        responsiveVoice.speak("현재 상태를 저장하였습니다.!", "Korean Female");
-                }
-        }
+	function save()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			console.log('Responsive Voice Supported');
 
-	function load(){
-                if(responsiveVoice.voiceSupport()){
-                        console.log('Responsive Voice Supported');
-                        responsiveVoice.speak("저장된 상태를 불러왔습니다!", "Korean Female");
-                }
-        }
+			$.ajax({
+    	        	    type:"GET",
+        	   	        async:"false",
+            		    url:"http://localhost/save.php",
+         	       	    dataType:"jsonp",
+            		    data:"list",
+                		callback:"temper",
+      			        success:function(data){
+        	   	       	    responsiveVoice.speak("현재 상태를 저장하였습니다", "Korean Female");
+           		     	},
+           		   	    error:function(){
+           	             alert("Fail");
+           	     		}
+        		    });
+		}
+    }
 
-
-
-	function get_temperature(){
-	$.ajax({
-		type:"GET",
-		async:"false",
-		url:"http://192.168.0.25/temperature.php",
-		dataType:"jsonp",
-		data:"list",
-		callback:"temper",
-		success:function(data){
-			responsiveVoice.speak(data+"도 입니다", "Korean Female");
-		},
-		error:function(){
-			alert("Fail");
-		}	
-        });
+	function load()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			console.log('Responsive Voice Supported');
+			responsiveVoice.speak("저장된 상태를 불러왔습니다!", "Korean Female");
+		}
 	}
 
 
-        function feed(){
-                if(responsiveVoice.voiceSupport()){
-                        console.log('Responsive Voice Supported');
-                        responsiveVoice.speak("니가 알아서 쳐머겅!", "Korean Female");
-                }
-        }
+
+	function get_temperature()
+	{
+		$.ajax({
+					type:"GET",
+					async:"false",
+					url:"http://192.168.0.25/temperature.php",
+					dataType:"jsonp",
+					data:"list",
+					callback:"temper",
+					success:function(data){
+					responsiveVoice.speak(data+"도 입니다", "Korean Female");
+				},
+				error:function(){
+				alert("Fail");
+				}	
+    	    });
+	}
+
+	function feed()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			console.log('Responsive Voice Supported');
+			responsiveVoice.speak("니가 알아서 쳐머겅!", "Korean Female");
+		}
+	}
+	
 	var d=new Date();
 	var hours=String(d.getHours()) + "시";
 	var minutes=String(d.getMinutes()) +"분 입니다";
-	function time(){
-                if(responsiveVoice.voiceSupport()){
-                        console.log('Responsive Voice Supported');
-                        responsiveVoice.speak(hours+minutes, "Korean Female");
-                }
-        }
+	function time()
+	{
+		if(responsiveVoice.voiceSupport())
+		{
+			console.log('Responsive Voice Supported');
+			responsiveVoice.speak(hours+minutes, "Korean Female");
+		}
+	}
 </script>
 
 
 <script>
+
+(function(){ setTimeout("intro()", 2000);}) ()
+
 if (annyang) {
  // Let's define a command.
  var commands = {
    '지니': function() { say(); },
   '배고파': function() {feed(); },
-  '불 켜': function() {lighton(); },
+  '불켜': function() {lighton(); },
+  '불꺼': function() {lightoff(); },
   '몇도야': function() {get_temperature();},
   '온도': function() {get_temperature();},
   '저장해': function() {save();},
@@ -94,11 +135,12 @@ if (annyang) {
    
 }
 </script>
-
+</head>
 
 <body>
-<center>
-<img src=./ginie.jpg>
-</center>
+	<center>
+	<img src=./ginie.jpg>
+	</center>
 </body>
+
 </html>
