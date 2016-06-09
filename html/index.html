@@ -14,7 +14,26 @@
 		{
 			  console.log('Responsive Voice Supported');
 			  responsiveVoice.speak("주인님 무엇을 도와드릴까요!", "Korean Female");
-	    }
+	    	}
+
+
+		 //커널단 구조체 전달
+                        $.ajax({
+                            type:"GET",
+                                async:"false",
+                                url:"http://localhost/setting.php",
+                                dataType:"jsonp",
+                                 data:"list",
+                                callback:"temper",
+                                success:function(data){
+                                },
+                                error:function(){
+                                 alert("Fail");
+                                }
+                            });
+
+
+
 	}
 	function say()
 	{
@@ -44,6 +63,23 @@
 					 alert("Fail");
 					 }
 				});
+
+			//커널단 구조체 전달
+                        $.ajax({
+                            type:"GET",
+                                async:"false",
+                                url:"http://localhost/lighton.php",
+                                dataType:"jsonp",
+                                 data:"list",
+                                callback:"temper",
+                                success:function(data){
+                                },
+                                error:function(){
+                                 alert("Fail");
+                                }
+                            });
+
+
 		}
 	}
 	
@@ -67,6 +103,22 @@
                                          alert("Fail");
                                          }
                                 });
+
+			//커널단 구조체 전달
+			$.ajax({
+                            type:"GET",
+                                async:"false",
+                                url:"http://localhost/lightoff.php",
+                                dataType:"jsonp",
+                                 data:"list",
+                                callback:"temper",
+                                success:function(data){
+                                },
+                                error:function(){
+                                 alert("Fail");
+                                }
+                            });
+
                 }
         }
 
@@ -81,19 +133,19 @@
 			$.ajax({
     	        	    type:"GET",
         	   	        async:"false",
-            		    url:"http://localhost/save.php",
-         	       	    dataType:"jsonp",
-            		    data:"list",
+            		    	url:"http://localhost/save.php",
+         	       	    	dataType:"jsonp",
+            		   	 data:"list",
                 		callback:"temper",
       			        success:function(data){
-        	   	       	    responsiveVoice.speak("현재 상태를 저장하였습니다", "Korean Female");
+        	   	      	    responsiveVoice.speak("현재 상태를 저장하였습니다", "Korean Female");
            		     	},
-           		   	    error:function(){
-           	             alert("Fail");
+           		   	error:function(){
+           	            	 alert("Fail");
            	     		}
         		    });
 		}
-    }
+    	}	
 
 	function load()
 	{
