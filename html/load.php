@@ -1,6 +1,6 @@
 <?php
 	$data = system("sudo /var/www/html/dowork 2");
-	
+	system("sudo chmod 0777 /var/www/html/loadData.txt");	
 	$f = fopen("/var/www/html/loadData.txt", "r");
 
 	ob_start();
@@ -9,11 +9,11 @@
 	{
 		$command = fgets($f) . "<br/>";
 		
-		if($command == "학교불 켜")
+		if(strstr($command, "학교불 켜"))
 		{
 			file_get_contents("http://192.168.0.25/lighton.php");
 		}
-		else if($command == "학교불 꺼")
+		else if(strstr($command, "학교불 꺼"))
 		{
                         file_get_contents("http://192.168.0.25/lightoff.php");
 		}
