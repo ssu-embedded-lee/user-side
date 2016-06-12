@@ -11,11 +11,11 @@
 		
 		if(strstr($command, "학교불 켜"))
 		{
-			file_get_contents("http://192.168.0.25/lighton.php");
+			file_get_contents("http://192.168.0.27/subo-light-controll.php?type=1");
 		}
 		else if(strstr($command, "학교불 꺼"))
 		{
-                        file_get_contents("http://192.168.0.25/lightoff.php");
+                        file_get_contents("http://192.168.0.27/subo-light-controll.php?type=0");
 		}
 	}
 	fclose($f);
